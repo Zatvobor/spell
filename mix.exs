@@ -48,14 +48,14 @@ defmodule Spell.Mixfile do
   defp deps(:prod) do
     [
      # Req'd by: `Spell.Authentication.CRA`
-     {:pbkdf2, github: "pma/erlang-pbkdf2", branch: "master"}
+     {:pbkdf2, github: "pma/erlang-pbkdf2", branch: "master", manager: :make}
     ]
   end
 
   defp deps(_) do
     deps(:prod) ++ [
       # Req'd by: `Spell.Transport.Websocket`
-      {:websocket_client, github: "jeremyong/websocket_client", tag: "v0.7"},
+      {:websocket_client, github: "jeremyong/websocket_client", tag: "v0.7", manager: :rebar},
       # Req'd by: `Spell.Serializer.JSON`
       {:poison, "~> 1.4"},
       # Req'd by: `Spell.Serializer.MessagePack`
