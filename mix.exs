@@ -9,7 +9,7 @@ defmodule Spell.Mixfile do
      elixir: "~> 1.0",
      description: description,
      package: package,
-     deps: deps(Mix.env),
+     deps: deps,
      aliases: aliases,
      docs: docs,
      preferred_cli_env: ["test.all": :test,
@@ -45,15 +45,10 @@ defmodule Spell.Mixfile do
      links: %{"Github" => "https://github.com/MyMedsAndMe/spell"}]
   end
 
-  defp deps(:prod) do
+  defp deps do
     [
-     # Req'd by: `Spell.Authentication.CRA`
-     {:pbkdf2, github: "pma/erlang-pbkdf2", branch: "master", manager: :make}
-    ]
-  end
-
-  defp deps(_) do
-    deps(:prod) ++ [
+      # Req'd by: `Spell.Authentication.CRA`
+      {:pbkdf2, github: "pma/erlang-pbkdf2", branch: "master", manager: :make},
       # Req'd by: `Spell.Transport.Websocket`
       {:websocket_client, github: "jeremyong/websocket_client", tag: "v0.7", manager: :rebar},
       # Req'd by: `Spell.Serializer.JSON`
