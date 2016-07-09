@@ -21,9 +21,7 @@ defmodule Spell.Mixfile do
   end
 
   def application do
-    [applications: [:logger,
-                    :websocket_client,
-                    :pbkdf2],
+    [applications: [:logger, :pbkdf2],
     mod: {Spell, []}]
   end
 
