@@ -67,6 +67,11 @@ defmodule Spell.Transport.WebSocket do
     {:ok, state}
   end
 
+  def websocket_handle({:ping, raw_message}, _conn_state, state) do
+    Logger.debug(fn -> "Sending pong message over websocket: #{inspect(raw_message)}" end)
+    {:reply, {:pong, raw_message}, state}
+  end
+
   def websocket_info({:send, raw_message}, _conn_state, state) do
     Logger.debug(fn -> "Sending message over websocket: #{inspect(raw_message)}" end)
     {:reply, {state.serializer_info.frame_type, raw_message}, state}
